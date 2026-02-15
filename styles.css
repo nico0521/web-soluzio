@@ -9,10 +9,10 @@
   --color-bg-light: #1a1a1a;
   --color-text: #ffffff;
   --color-text-muted: #cccccc;
-  --color-text-light: #aaa;
-  --color-text-dark: #888888;
-  --color-text-darker: #666666;
-  --color-text-darkest: #999999;
+  --color-text-dim: #aaa;
+  --color-text-dimmer: #999999;
+  --color-text-dimmest: #888888;
+  --color-text-footer: #666666;
   --color-border: rgba(255, 255, 255, 0.1);
   --color-border-focus: #ff0000;
   
@@ -213,7 +213,7 @@ body {
 
 .section-subtitle {
   text-align: center;
-  color: var(--color-text-light);
+  color: var(--color-text-dim);
   font-size: var(--font-size-large);
   margin-bottom: var(--spacing-2xl);
   max-width: 600px;
@@ -281,7 +281,7 @@ body {
 }
 
 .product-features li {
-  color: var(--color-text-darkest);
+  color: var(--color-text-dimmer);
   margin-bottom: var(--spacing-xs);
   font-size: var(--font-size-small);
 }
@@ -440,7 +440,7 @@ body {
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-  color: var(--color-text-dark);
+  color: var(--color-text-dimmest);
 }
 
 .form-group input[aria-invalid="true"],
@@ -497,7 +497,7 @@ body {
 }
 
 .footer p {
-  color: var(--color-text-darker);
+  color: var(--color-text-footer);
 }
 
 /* Animations */
