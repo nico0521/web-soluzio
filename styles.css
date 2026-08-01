@@ -85,6 +85,49 @@ body {
   line-height: var(--line-height-normal);
 }
 
+/* Site Navigation */
+.site-nav {
+  position: relative;
+  z-index: 3;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: rgba(10, 10, 10, 0.55);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-nav-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.site-nav-links a {
+  display: inline-block;
+  padding: 0.5rem 0.15rem;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.01em;
+  border-bottom: 2px solid transparent;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.site-nav-links a:hover {
+  color: var(--color-text);
+  border-bottom-color: var(--color-primary);
+}
+
+.site-nav-links a:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
+  border-radius: var(--radius-small);
+}
+
 /* Hero Section */
 .hero {
   min-height: 100vh;
@@ -233,7 +276,7 @@ body {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-large);
   padding: var(--spacing-lg) var(--spacing-md);
-  text-align: center;
+  text-align: left;
   transition: all var(--transition-normal);
   backdrop-filter: blur(10px);
   position: relative;
@@ -256,26 +299,37 @@ body {
   background: linear-gradient(90deg, var(--color-primary), var(--color-primary-dark));
 }
 
-.product-image-frame {
+.product-visual {
   width: 100%;
-  max-width: 260px;
-  aspect-ratio: 3 / 4;
-  margin: 0 auto var(--spacing-md);
-  padding: var(--spacing-sm);
-  background: #f4efe6;
+  aspect-ratio: 1122 / 1402;
+  margin: 0 0 var(--spacing-md);
+  background: radial-gradient(ellipse 75% 65% at 50% 34%, #333333 0%, #202020 45%, #121212 78%, #0d0d0d 100%);
   border-radius: var(--radius-medium);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
   overflow: hidden;
-  box-shadow: 0 18px 30px -16px rgba(0, 0, 0, 0.6);
 }
 
-.product-image {
+.product-photo {
   width: 100%;
   height: 100%;
   object-fit: contain;
   display: block;
+  -webkit-mask-image: radial-gradient(ellipse 62% 68% at 50% 48%, #000 68%, transparent 100%);
+  mask-image: radial-gradient(ellipse 62% 68% at 50% 48%, #000 68%, transparent 100%);
+}
+
+/* Both source photos are framed identically (1122x1402, same studio setup).
+   Scaling from the bottom center keeps both cups grounded on the same visual
+   floor while making the 500 ml cup the tallest and the 340 ml cup read at
+   roughly 78% of that height, per the approved measured crop of each source. */
+.product-visual--frosted .product-photo {
+  transform: scale(0.87);
+  transform-origin: 50% 100%;
+}
+
+.product-visual--cafe .product-photo {
+  transform: scale(0.77);
+  transform-origin: 50% 100%;
 }
 
 .product-title {
@@ -289,6 +343,23 @@ body {
   color: var(--color-text-muted);
   line-height: var(--line-height-normal);
   margin-bottom: var(--spacing-md);
+}
+
+.product-chips {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
+}
+
+.product-chips li {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 0.35rem 0.85rem;
+  font-size: var(--font-size-small);
+  color: var(--color-text-muted);
 }
 
 .product-features {
@@ -315,38 +386,167 @@ body {
   background: linear-gradient(135deg, var(--color-bg-dark) 0%, var(--color-bg-light) 100%);
 }
 
+.benefits-header {
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+}
+
+.benefits-eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  color: var(--color-primary);
+  font-size: var(--font-size-large);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.12em;
+  margin-bottom: var(--spacing-sm);
+}
+
+.benefits-eyebrow::before,
+.benefits-eyebrow::after {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--color-primary);
+  opacity: 0.6;
+}
+
+.benefits-header .section-subtitle {
+  margin-bottom: 0;
+}
+
 .benefits-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--spacing-lg);
 }
 
 .benefit-card {
-  text-align: center;
-  padding: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  text-align: left;
+  padding: var(--spacing-lg);
+  background: #161616;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-large);
+  position: relative;
+  overflow: hidden;
 }
 
-.benefit-icon {
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
-  border-radius: 50%;
+.benefit-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(227, 7, 19, 0.55), transparent);
+  filter: blur(1px);
+}
+
+.benefit-media {
+  flex: 0 0 auto;
+  width: 180px;
+  height: 180px;
+  border-radius: var(--radius-medium);
+  background: radial-gradient(circle at 50% 45%, #050505 0%, #000000 65%, #000000 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 12px 28px -18px rgba(0, 0, 0, 0.85);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto var(--spacing-md);
-  font-size: var(--font-size-4xl);
+  overflow: hidden;
+}
+
+.benefit-media-img {
+  width: 82%;
+  height: 82%;
+  object-fit: contain;
+  display: block;
+}
+
+.benefit-content {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 
 .benefit-title {
   font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  margin-bottom: var(--spacing-xs);
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.benefit-accent {
+  display: block;
+  width: 40px;
+  height: 3px;
+  border-radius: var(--radius-small);
+  background: var(--color-primary);
   margin-bottom: var(--spacing-sm);
 }
 
 .benefit-description {
   color: var(--color-text-muted);
   line-height: var(--line-height-normal);
+  font-size: var(--font-size-small);
+}
+
+@media (max-width: 767px) {
+  .benefits-eyebrow {
+    display: block;
+  }
+
+  .benefits-eyebrow::before,
+  .benefits-eyebrow::after {
+    display: none;
+  }
+
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .benefit-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .benefit-media {
+    width: 136px;
+    height: 136px;
+  }
+}
+
+/* 768px is the narrowest width that keeps the two-column row layout (per
+   handoff: reduce icon/gap here, but do not switch to a third structure).
+   The default 180px icon plus full padding leaves too little room for the
+   text column at this exact card width, so this range trims spacing and
+   uses the lower end of the approved 168-190px desktop icon range. */
+@media (min-width: 768px) and (max-width: 899px) {
+  .benefits {
+    padding-left: var(--spacing-sm);
+    padding-right: var(--spacing-sm);
+  }
+
+  .benefits-grid {
+    gap: var(--spacing-sm);
+  }
+
+  .benefit-card {
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+
+  .benefit-media {
+    width: 168px;
+    height: 168px;
+  }
 }
 
 /* Process Section */
@@ -571,6 +771,11 @@ html {
 
   .products-grid {
     grid-template-columns: 1fr;
+  }
+
+  .site-nav-links {
+    gap: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-small);
   }
 }
 
