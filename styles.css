@@ -593,18 +593,23 @@ body {
 .process-steps {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--spacing-lg);
+  gap: var(--spacing-md);
   margin-top: calc(var(--spacing-2xl) + var(--spacing-sm));
+  align-items: stretch;
 }
 
 .process-step {
   text-align: center;
   position: relative;
   min-width: 0;
-  padding: calc(var(--spacing-lg) + var(--spacing-sm)) var(--spacing-sm) var(--spacing-lg);
-  background: #161616;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-large);
+  min-height: 410px;
+  padding: calc(var(--spacing-lg) + var(--spacing-xs)) var(--spacing-md) var(--spacing-md);
+  background: linear-gradient(180deg, #181818 0%, #141414 100%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 18px 42px -34px rgba(0, 0, 0, 0.95);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -635,7 +640,7 @@ body {
   position: absolute;
   top: 50%;
   left: 100%;
-  width: var(--spacing-lg);
+  width: var(--spacing-md);
   height: 10px;
   transform: translateY(-50%);
   background:
@@ -663,17 +668,24 @@ body {
 }
 
 .step-icon {
-  width: 224px;
+  width: 160px;
+  aspect-ratio: 1;
   max-width: 100%;
-  margin: var(--spacing-md) auto var(--spacing-sm);
+  margin: var(--spacing-md) auto var(--spacing-md);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.step-icon picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .step-icon-img {
   width: 100%;
-  height: auto;
+  height: 100%;
   max-width: 100%;
   object-fit: contain;
   display: block;
@@ -688,6 +700,8 @@ body {
 .step-description {
   color: var(--color-text-muted);
   line-height: var(--line-height-normal);
+  font-size: var(--font-size-base);
+  max-width: 26ch;
 }
 
 .process-footer {
@@ -903,7 +917,7 @@ html {
   }
 
   .step-icon {
-    width: 250px;
+    width: 148px;
   }
 
   .site-nav-links {
@@ -929,7 +943,7 @@ html {
   }
 
   .step-icon {
-    width: 320px;
+    width: 156px;
   }
 
   .hero-headline {
